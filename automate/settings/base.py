@@ -38,8 +38,15 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # Application definition
 
 INSTALLED_APPS = [
+    #packages
+    "storages",
+    
+    #apps
     "home",
+    #feature
     "search",
+    
+    # system
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.embeds",
@@ -154,13 +161,13 @@ STATICFILES_DIRS = [
 # ManifestStaticFilesStorage is recommended in production, to prevent outdated
 # JavaScript / CSS assets being served from cache (e.g. after a Wagtail upgrade).
 # See https://docs.djangoproject.com/en/4.2/ref/contrib/staticfiles/#manifeststaticfilesstorage
-STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+# STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-STATIC_URL = "/static/"
+# STATIC_ROOT = os.path.join(BASE_DIR, "static")
+# STATIC_URL = "/static/"
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_URL = "/media/"
+# MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+# MEDIA_URL = "/media/"
 
 
 # Wagtail settings
@@ -193,3 +200,32 @@ DATABASES = {
         "PASSWORD": get_secret('DB_PASSWORD'),
     }
 }
+
+
+CSRF_TRUSTED_ORIGINS = ['https://lionfish-app-mrnmk.ondigitalocean.app/', "https://lionfish-app-mrnmk.ondigitalocean.app/admin/", "http://*.ondigitalocean.app/*"]
+
+
+#AWS S3 STORAGE
+AWS_ACCESS_KEY_ID = get_secret("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = get_secret("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = "automate-design"
+AWS_S3_FILE_OVERWRITE = False
+MEDIA_URL = f'automate-design://automate-design.s3.amazonaws.com/media/'
+AWS_STATIC_LOCATION = 'static'
+AWS_MEDIA_LOCATION = 'media'
+AWS_S3_REGION_NAME = "us-east-1"  
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400'
+}
+
+MEDIA_URL = f'https://automate-design.s3.amazonaws.com/media/'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media") #sys
+MEDIA_URL = "/media/"
+
+STATIC_URL = f'https://automate-design.s3.amazonaws.com/static/'
+# STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static") #sys
+STATIC_URL = "/static/"
