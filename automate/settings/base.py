@@ -202,7 +202,7 @@ DATABASES = {
 }
 
 
-CSRF_TRUSTED_ORIGINS = ['https://lionfish-app-mrnmk.ondigitalocean.app/', "https://lionfish-app-mrnmk.ondigitalocean.app/admin/", "http://*.ondigitalocean.app/*"]
+CSRF_TRUSTED_ORIGINS = ['https://dolphin-app-b5whj.ondigitalocean.app/', "https://dolphin-app-b5whj.ondigitalocean.app/admin/", "http://*.ondigitalocean.app/*"]
 
 
 #AWS S3 STORAGE
