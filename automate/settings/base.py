@@ -179,3 +179,6 @@ DATABASES = {
         "PASSWORD": "AVNS_ljqM26jM__OM1778piY",
     }
 }
+
+
+ALLOWED_HOSTS = ["*", "*ondigitalocean.app", "dolphin-app-b5whj.ondigitalocean.app" ]
