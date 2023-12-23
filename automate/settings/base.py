@@ -12,6 +12,20 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import json
+from django.core.exceptions import ImproperlyConfigured
+
+
+
+with open('./sec.json') as f:
+    secrets = json.load(f)
+
+def get_secret(setting, secrets=secrets):
+    try:
+        return secrets[setting]
+    except KeyError:
+        error_msg = 'Set the{0} environment variable'.format(setting)
+        raise ImproperlyConfigured(error_msg)
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
@@ -164,3 +178,18 @@ WAGTAILSEARCH_BACKENDS = {
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 WAGTAILADMIN_BASE_URL = "http://example.com"
+
+
+SECRET_KEY = get_secret("SECRET")
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        "HOST" : "onex-do-user-15355486-0.c.db.ondigitalocean.com",
+        "NAME" : get_secret('DB_NAME'),
+        "USER" :  get_secret('DB_USER'),
+        "PORT" : "25060",
+        "PASSWORD": get_secret('DB_PASSWORD'),
+    }
+}
