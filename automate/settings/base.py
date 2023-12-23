@@ -164,21 +164,3 @@ WAGTAILSEARCH_BACKENDS = {
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 WAGTAILADMIN_BASE_URL = "http://example.com"
-
-
-
-SECRET_KEY = "$%*4=^_d8!l1j@uinhb5)9aew6ehw1zl^5sw0t7-1%&t@$rvjv"
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         "HOST" : "onex-do-user-15355486-0.c.db.ondigitalocean.com",
-#         "NAME" : "onexdb",
-#         "USER" : "doadmin",
-#         "PORT" : "25060",
-#         "PASSWORD": "AVNS_ljqM26jM__OM1778piY",
-#     }
-# }
-
-
-ALLOWED_HOSTS = ["*", "*ondigitalocean.app", "seahorse-app-ur57p.ondigitalocean.app" ]
